@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "yenigul/hacicenkins"
+    imagename = "yenigul/hacicenkins"
     registryCredential = 'yenigul-dockerhub'
     dockerImage = ''
   }
@@ -15,7 +15,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry
+          dockerImage = docker.build imagename
         }
       }
     }
@@ -24,6 +24,8 @@ pipeline {
         script {
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push("${env.BUILD_NUMBER}")
+            dockerImage.push("$BUILD_NUMBER")
+
              dockerImage.push('latest')
 
           }
@@ -32,7 +34,9 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "docker rmi $imagename:$BUILD_NUMBER"
+         sh "docker rmi $imagename:latest"
+
       }
     }
   }
