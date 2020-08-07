@@ -24,6 +24,7 @@ pipeline {
       
           anyOf {
             branch 'test'
+            branch 'PR-1'
           }
        
      }
