@@ -15,9 +15,17 @@ pipeline {
     }
     stage('Building image') {
       steps{
+        withAWS(credentials: 'ecr-ismail', region: 'us-east-2'){
+          
+
+      sh "echo AWSKEY ${AWS_ACCESS_KEY_ID}"
+
+
         script {
+
           dockerImage = docker.build imagename
         }
+      }
       }
     }
     stage('Deploy Image') {
