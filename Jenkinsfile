@@ -46,7 +46,7 @@ stage('Deploy Master Image') {
      }
       steps{
         script {
-          docker.withRegistry("828556645578.dkr.ecr.us-east-2.amazonaws.com", "ecr:us-east-2:ecr-ismail") {     
+          docker.withRegistry("https://828556645578.dkr.ecr.us-east-2.amazonaws.com", "ecr:us-east-2:ecr-ismail") {     
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
