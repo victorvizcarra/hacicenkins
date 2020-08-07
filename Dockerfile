@@ -1,2 +1,3 @@
-FROM ubuntu:20.04
-RUN apt update && apt upgrade -y
+FROM alpine
+
+COPY branch.txt /
