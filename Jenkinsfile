@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Deploy Test Image') {
         when {
-        
+      
           anyOf {
             branch 'test'
           }
