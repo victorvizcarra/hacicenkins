@@ -39,11 +39,9 @@ pipeline {
     }
 stage('Deploy Master Image') {
    when {
-        
-          anyOf {
+      anyOf {
             branch 'master'
-          }
-       
+      }
      }
       steps{
         script {
@@ -56,13 +54,29 @@ stage('Deploy Master Image') {
       }
     }
 
+ stage('Remove Unused docker image - test') {
+      when {
+      anyOf {
+            branch 'test'
+      }
+     }
+      steps{
+        sh "docker rmi $imagename:test-$BUILD_NUMBER"
+         sh "docker rmi $imagename:test-latest"
 
-    stage('Remove Unused docker image') {
+      }
+    } // End of remove unused docker image for master
+    stage('Remove Unused docker image - Master') {
+      when {
+      anyOf {
+            branch 'master'
+      }
+     }
       steps{
         sh "docker rmi $imagename:$BUILD_NUMBER"
          sh "docker rmi $imagename:latest"
 
       }
-    }
-  }
-}
+    } // End of remove unused docker image for master
+  }  
+} //end of pipeline
