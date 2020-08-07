@@ -2,8 +2,10 @@ pipeline {
   environment {
     imagename = "ismailtest"
     registryCredential = 'yenigul-dockerhub'
+    ecrurl = "https://828556645578.dkr.ecr.us-east-2.amazonaws.com"
+    ecrcredentials = "ecr:us-east-2:ecr-ismail"
     dockerImage = ''
-  }
+  } 
   agent any
   stages {
     stage('Cloning Git') {
@@ -46,7 +48,7 @@ stage('Deploy Master Image') {
      }
       steps{
         script {
-          docker.withRegistry("https://828556645578.dkr.ecr.us-east-2.amazonaws.com", "ecr:us-east-2:ecr-ismail") {     
+          docker.withRegistry(ecrurl, ecrcredentials) {     
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
