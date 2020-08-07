@@ -19,7 +19,32 @@ pipeline {
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Deploy Test Image') {
+        when {
+        
+          anyOf {
+            branch 'test'
+          }
+       
+     }
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push("test-$BUILD_NUMBER")
+             dockerImage.push('test-latest')
+
+          }
+        }
+      }
+    }
+stage('Deploy Master Image') {
+   when {
+        
+          anyOf {
+            branch 'master'
+          }
+       
+     }
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
@@ -30,6 +55,8 @@ pipeline {
         }
       }
     }
+
+
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $imagename:$BUILD_NUMBER"
