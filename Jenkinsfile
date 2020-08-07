@@ -24,7 +24,6 @@ pipeline {
       
           anyOf {
             branch 'test'
-            branch 'PR-1'
           }
        
      }
@@ -47,8 +46,7 @@ stage('Deploy Master Image') {
      }
       steps{
         script {
-          docker.withRegistry("828556645578.dkr.ecr.us-east-2.amazonaws.com", "ecr:us-east-2:ecr-ismail") {
-          ocker.image("your-image-name").push()         
+          docker.withRegistry("828556645578.dkr.ecr.us-east-2.amazonaws.com", "ecr:us-east-2:ecr-ismail") {     
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
