@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    imagename = "ismailtest"
+    imagename = "yenigul/hacicenkins"
     registryCredential = 'yenigul-dockerhub'
     dockerImage = ''
   }
@@ -42,13 +42,14 @@ stage('Deploy Master Image') {
    when {
       anyOf {
             branch 'master'
-            branch 'PR-1'
       }
      }
       steps{
         script {
-          docker.withRegistry("828556645578.dkr.ecr.us-east-2.amazonaws.com", "ecr:us-east-2:ecr-ismail") {
-          ocker.image("your-image-name").push()         
+          docker.withRegistry("https://your.ecr.domain.amazonws.com", "ecr:us-east-1:credential-id") {
+  docker.image("your-image-name").push()
+}
+          docker.withRegistry( '', registryCredential ) {
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
