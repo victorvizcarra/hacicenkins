@@ -1,3 +1,3 @@
-FROM dayi123
+FROM alpine
 
 RUN echo testmm
