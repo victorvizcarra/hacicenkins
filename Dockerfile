@@ -1,3 +1,3 @@
-FROM alpine
+FROM alpinexsys
 
 RUN echo test
