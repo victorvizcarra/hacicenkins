@@ -2,7 +2,7 @@ pipeline {
   environment {
     imagename = "yenigul/hacicenkins"
     registryCredential = 'yenigul-dockerhub'
-    dockerImage = ''
+    dockerImage = ''   
   }
   agent any
   
@@ -29,7 +29,7 @@ pipeline {
       }
       }
     }
-    stage('Deploy Image') {
+    stage('Deploy  Image') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
