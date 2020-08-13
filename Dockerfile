@@ -1,3 +1,3 @@
 FROM alpine
 
-RUN echo testmm
+RUN echo testmms
