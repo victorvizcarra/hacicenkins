@@ -1,2 +1,3 @@
-FROM oooubuntu55555:20.04sss
-RUN apt update && apt upgrad
+FROM alpine
+
+RUN echo test
