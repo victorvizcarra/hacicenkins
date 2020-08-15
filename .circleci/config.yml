@@ -9,7 +9,7 @@ jobs:
      - checkout
      - setup_remote_docker
      - run: |
-         TAG=0.1.$CIRCLE_SHA1
+         TAG=$CIRCLE_SHA1
          docker build -t yenigul/hacicenkins:$TAG .
          echo "$dockerpass" | docker login --username $dockeruser --password-stdin
          docker push yenigul/hacicenkins:$TAG
