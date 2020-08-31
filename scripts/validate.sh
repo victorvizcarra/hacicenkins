@@ -13,7 +13,7 @@ AWS_REGION=$1
 LUMINARY_ENV=$2
 
 pwd
-export PATH=$PATH:~/scripts
+export PATH=$PATH:./scripts
 #trim spaces with xargs
 lines=$(yq r config.yml $AWS_REGION.$LUMINARY_ENV.environment_variables | wc -l | xargs)
 
