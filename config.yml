@@ -1,0 +1,22 @@
+us-east-2:
+  stage:
+    environment_variables:
+      - name: LOG_LEVEL
+        value: debug
+      - name: LUMINARY_ENV
+        value: stage
+      - name: AWS_REGION
+        value: us-east-2
+      - name: ELASTICSEARCH_URL
+        value: https://vpc-luminary-api-search-stage-mpbxx3ols7hjqojjlioidpsczm.us-east-2.es.amazonaws.com
+      - name: ELASTICSEARCH_TIMEOUT_MS
+        value: 2000
+      - name: TYPEAHEAD_PUBLISHER_QUERY_TEMPLATE
+        value: publisherQuery
+      - name: TYPEAHEAD_SHOW_QUERY_TEMPLATE
+        value: podcastQuery
+    secrets_from:
+      - name: NEWRELIC_KEY
+        valueFrom: arn:aws:secretsmanager:us-east-2:363014:secret:nrelic_key-S0CxnY
+      - name: NEWRELIC_KEY_FAIL
+        valueFrom: arn:aws:Asecretsmanager:us-east-2:7363014:secret:nrelic_key-S0CxnS

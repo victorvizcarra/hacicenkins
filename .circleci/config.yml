@@ -2,6 +2,11 @@
 version: 2.1
 # Use a package of configuration called an orb.
 jobs:
+  validate_config:
+    steps:
+      - checkout
+      - run:  bash validate.sh
+      
   build:
     docker:
       - image: circleci/buildpack-deps:focal
@@ -21,4 +26,5 @@ workflows:
   buildocker:
     # Run the welcome/run job in its own container
     jobs:
+      - validate_config
       - build
