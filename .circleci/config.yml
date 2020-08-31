@@ -4,14 +4,14 @@ version: 2.1
 jobs:
   validate_config:
     docker:
-      - image: yenigul/dockernettools
+      - image: circleci/buildpack-deps:focal
     steps:
       - checkout
       - run:
           name: validate config
           command: |
             set -e
-            which bash
+            bash --version
             chmod 755 validate.sh && ./validate.sh
       
   build:

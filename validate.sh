@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
+set -euf -o pipefail
+
 
 #curl -L -o ./yq  https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64 && chmod 755 yq
 
