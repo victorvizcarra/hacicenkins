@@ -2,7 +2,7 @@
 
 #set -e
 pattern="^arn:aws:secretsmanager:\S+:\d+:secret:\S+$"
-
+echo "exit 1 test"
 (yq r config.yml us-east-2.stage.secrets_from || exit 1) | 
 while read -r ENV
 read -r VALUE
