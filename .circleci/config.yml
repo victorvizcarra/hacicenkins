@@ -14,8 +14,6 @@ jobs:
             bash validate.sh
       
   build:
-    require:
-      - validate_config
     docker:
       - image: circleci/buildpack-deps:focal
     steps:
@@ -35,4 +33,7 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - validate_config
-      - build
+      - build:
+          requires:
+          - validate_config
+           
