@@ -11,7 +11,8 @@ jobs:
           name: validate config
           command: |
             set -e
-            bash validate.sh
+            which bash
+            chmod 755 validate.sh && ./validate.sh
       
   build:
     docker:
