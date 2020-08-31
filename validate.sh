@@ -1,4 +1,4 @@
-#!/usr/bin/bash -eo pipefail
+#!/usr/bin/bash
 
 set -e
 pattern="^arn:aws:secretsmanager:\S+:\d+:secret:\S+$"
