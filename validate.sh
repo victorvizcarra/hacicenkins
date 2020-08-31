@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/usr/local/bin/bash -eo pipefail
 
+#set -e
 pattern="^arn:aws:secretsmanager:\S+:\d+:secret:\S+$"
 
-yq r c.yaml us-east-2.stage.secrets_from | 
+yq r config.yml us-east-2.stage.secrets_from | 
 while read -r ENV
 read -r VALUE
 do 
@@ -10,8 +11,9 @@ do
   if ! echo $SECRETARN  | grep -E $pattern 
   then
 	echo "Not valid arn $SECRETARN"
+	exit -1
   fi
-done
+done 
 
 #echo $key  | grep -E  "^arn:aws:secretsmanager:\S+:\d+:secret:\S+$"
 #[[ $key  =~ $pattern ]] &&	echo "match"
