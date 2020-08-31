@@ -11,7 +11,10 @@ jobs:
           name: validate config
           command: |
             set -e
-            chmod 755 validate.sh && ./validate.sh
+            pwd
+            curl -L -o scripts/yq  https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64 && chmod 755 scripts/yq
+            chmod 755 scripts/validate.sh us-east-2 stage
+            ./scripts/validate.sh
       
   build:
     docker:
