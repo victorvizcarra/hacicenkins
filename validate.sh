@@ -3,7 +3,7 @@
 #set -e
 pattern="^arn:aws:secretsmanager:\S+:\d+:secret:\S+$"
 
-yq r config.yml us-east-2.stage.secrets_from | 
+(yq r config.yml us-east-2.stage.secrets_from || exit 1) | 
 while read -r ENV
 read -r VALUE
 do 
