@@ -7,9 +7,11 @@ jobs:
       - image: circleci/buildpack-deps:focal
     steps:
       - checkout
-      - run: |
-          set -e
-          bash validate.sh
+      - run:
+          name: validate config
+          command: |
+            set -e
+            bash validate.sh
       
   build:
     docker:
