@@ -5,16 +5,27 @@ jobs:
   validate_config:
     docker:
       - image: circleci/buildpack-deps:focal
+    parameters:
+      regions:
+        type: string
+        default: "us-east-2 us-west-2"
+      envs:
+        type: string
+        default: "stage prod"
     steps:
       - checkout
       - run:
           name: validate config
           command: |
-            set -e
-            pwd
-            curl -L -o scripts/yq  https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64 && chmod 755 scripts/yq
-            chmod 755 scripts/validate.sh 
-            bash -x ./scripts/validate.sh us-east-2 stage
+            #set -e
+            #pwd
+            #curl -L -o scripts/yq  https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64 && chmod 755 scripts/yq
+            #chmod 755 scripts/validate.sh 
+            #bash -x ./scripts/validate.sh us-east-2 stage
+            for i in << parameters.regions >>
+            do
+              echo "region: $i"
+            done
       
   build:
     docker:
