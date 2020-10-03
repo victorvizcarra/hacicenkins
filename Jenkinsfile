@@ -16,7 +16,7 @@ pipeline {
     stage('Building image') {
       steps{
      
-      sh "echo AWSKEY && sleep 60"
+      sh "echo AWSKEY && sleep 10"
 
 
           }
