@@ -16,7 +16,7 @@ pipeline {
     stage('Building image') {
       steps{
      
-      sh "echo AWSKEY ${AWS_ACCESS_KEY_ID}"
+      sh "echo AWSKEY"
 
 
           }
