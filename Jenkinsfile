@@ -15,36 +15,14 @@ pipeline {
     }
     stage('Building image') {
       steps{
-        withAWS(credentials: 'ecr-ismail', region: 'us-east-2'){
-          
+     
+      sh "echo AWSKEY && sleep 10"
 
-      sh "echo AWSKEY ${AWS_ACCESS_KEY_ID}"
-
-
-        script {
-
-          dockerImage = docker.build imagename
-        }
-      }
-      }
-    }
-    stage('Deploy Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('latest')
 
           }
-        }
       }
-    }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $imagename:$BUILD_NUMBER"
-         sh "docker rmi $imagename:latest"
-
-      }
-    }
+   
+    
+    
   }
 }
