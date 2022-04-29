@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    imagename = "juanmaflo/dockerpipline"
+    imagename = "victor09vizcarra/nodejsapp"
     registryCredential = 'docker-hub'
     dockerImage = ''
   }
@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git([url: 'https://github.com/juanmazonflo/hacicenkins.git', branch: 'master', credentialsId: 'juanmazonflo-github-user-token'])
+        git([url: 'https://github.com/juanmazonflo/hacicenkins.git', branch: 'master', credentialsId: 'victor09vizcarra-github-user-token'])
 
       }
     }
